@@ -1,0 +1,41 @@
+
+# [workspace]
+# members = []
+
+[package]
+name = "github-hosts"
+version = "0.1.0"
+edition = "2021"
+repository = "https://github.com/ts-sf/github-hosts.git"
+license = "MIT"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+reqwest = "0.12.4"
+
+rand = "0.8.5"
+
+regex = "1.10.4"
+chrono = "0.4.38"
+anyhow = "1"
+futures = "0.3.30"
+
+tracing = "0.1"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+trust-dns-client = "0.23.2"
+clap = { version = "4.5.4", features = ["derive"] }
+git-version = "0.3.9"
+const-str = "0.5.7"
+
+[dev-dependencies]
+hex-literal = "0.4.1"
+
+[[bin]]
+name = "hosts"
+path = "src/bin/hosts.rs"
+
+[[bin]]
+name = "dns-forward"
+path = "src/bin/dns-forward.rs"
