@@ -4,9 +4,9 @@
 
 [package]
 name = "github-hosts"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
-repository = "https://github.com/ts-sf/github-hosts.git"
+repository = "https://github.com/ts-sf/github-hosts"
 license = "MIT"
 
 [dependencies]

@@ -5,13 +5,7 @@ use std::net::SocketAddr;
 use github_hosts::{dns_server, version::VERSION};
 use tracing_subscriber::{prelude::*, EnvFilter};
 
-use clap::{Parser, ValueEnum};
-
-#[derive(ValueEnum, Copy, Clone, Debug, PartialEq, Eq)]
-enum Target {
-    Github,
-    File,
-}
+use clap::Parser;
 
 #[derive(Debug, Parser)]
 #[command(name = "dns-forward")]
@@ -48,5 +42,7 @@ async fn main() {
         .parse::<SocketAddr>()
         .expect("resolver parse error");
 
-    dns_server::server(&server_at, &remote_dns).await.expect("server panic");
+    dns_server::server(&server_at, &remote_dns)
+        .await
+        .expect("server panic");
 }

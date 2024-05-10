@@ -36,5 +36,3 @@ pub static GITHUB_URLS: [&str; 36] = [
     "github.blog",
     "api.githubcopilot.com",
 ];
-
-

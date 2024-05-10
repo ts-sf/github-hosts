@@ -15,11 +15,11 @@ mod tests {
     #[test]
     fn valid_domain() {
         let domains = [
-            "vv.cv".to_owned(),
-            "dddddddddddd.dddddddd.d.d.d.d.d.d".to_owned(),
-            "4.cbn".to_owned(),
-            "c-56.10321.com".to_owned(),
-            "u8am-9d5.l-----asd.3vv".to_owned(),
+            "vv.cv",
+            "dddddddddddd.dddddddd.d.d.d.d.d.d",
+            "4.cbn",
+            "c-56.10321.com",
+            "u8am-9d5.l-----asd.3vv",
         ];
 
         for d in domains {

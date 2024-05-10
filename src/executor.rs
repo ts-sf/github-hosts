@@ -22,7 +22,6 @@ impl Executor {
 
     pub async fn resolve<'a, K: Borrow<str> + 'a, I: Iterator<Item = &'a K>>(&mut self, urls: I) {
         let mut futs = urls
-            // .iter()
             .map(|dm| async move {
                 let mut retries = 0;
                 let dm = dm.borrow();
@@ -30,14 +29,14 @@ impl Executor {
                     let r = ipaddress_com_records(dm, Duration::from_secs(5)).await;
                     match r {
                         Ok(ips) => {
-                            tracing::debug!("resolve {dm} ok.");
+                            tracing::debug!("Resolved {dm}.");
                             break (dm.to_owned(), ips);
                         }
                         Err(e) => {
                             retries += 1;
                             tracing::warn!("[{dm}] error {}", e.to_string());
                             if retries > 3 {
-                                tracing::error!("")
+                                tracing::error!("Many attempts to resolve {dm} it failed.")
                             }
                             tokio::time::sleep(Duration::from_millis(500)).await;
                         }
@@ -62,20 +61,18 @@ impl Executor {
             .keys()
             .map(|ip| {
                 let inner_ip = ip.to_string();
-                {
-                    async {
-                        let soc = TcpSocket::new_v4().unwrap();
-                        let addr = format!("{}:443", inner_ip).parse().unwrap();
-                        let timeout = Duration::from_secs(5);
-                        let now = Instant::now();
-                        match tokio::time::timeout(timeout, soc.connect(addr)).await {
-                            Ok(Ok(_)) => {
-                                let dur = now.elapsed();
-                                (dur.as_micros() as u32, inner_ip)
-                            }
-                            Ok(_) => (u32::MAX - 2, inner_ip),
-                            Err(_) => (u32::MAX - 1, inner_ip),
+                async {
+                    let soc = TcpSocket::new_v4().unwrap();
+                    let addr = format!("{}:443", inner_ip).parse().unwrap();
+                    let timeout = Duration::from_secs(5);
+                    let now = Instant::now();
+                    match tokio::time::timeout(timeout, soc.connect(addr)).await {
+                        Ok(Ok(_)) => {
+                            let dur = now.elapsed();
+                            (dur.as_micros() as u32, inner_ip)
                         }
+                        Ok(_) => (u32::MAX - 2, inner_ip),
+                        Err(_) => (u32::MAX - 1, inner_ip),
                     }
                 }
             })
@@ -115,6 +112,6 @@ mod tests {
 
         e.fresh_delays().await;
         let hosts = e.best_answer();
-        println!("{:#?}", hosts);
+        assert_eq!(hosts.len(), GITHUB_URLS.len());
     }
 }

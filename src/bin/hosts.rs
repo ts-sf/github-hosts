@@ -82,7 +82,7 @@ const TEMP: &str = r#"
 
 {}
 
-# github repository: https://github.com/ts-sf/github-hosts.git
+# github repository: https://github.com/ts-sf/github-hosts
 
 # update at {time}
 

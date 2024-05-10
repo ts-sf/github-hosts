@@ -1,5 +1,3 @@
-
-
 pub const GIT_REVISION: &str = {
     if let Some(revision) = option_env!("GIT_REVISION") {
         revision
