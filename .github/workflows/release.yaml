@@ -91,7 +91,7 @@ jobs:
           [ -f ./target/release/dns-forward${{ env.extention }} ] && mv ./target/release/dns-forward${{ env.extention }} ${{ env.TMP_BUILD_DIR }}/dns-forward${{ env.extention }}
 
           if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            7z a ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }} *.exe
+            7z a ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }} ${{ env.TMP_BUILD_DIR }}/*.exe
           else
             tar -cvzf ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }} -C ${{ env.TMP_BUILD_DIR }} .
           fi
