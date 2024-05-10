@@ -91,9 +91,9 @@ jobs:
           [ -f ./target/release/dns-forward${{ env.extention }} ] && mv ./target/release/dns-forward${{ env.extention }} ${{ env.TMP_BUILD_DIR }}/dns-forward${{ env.extention }}
 
           if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            7z a ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }}
+            7z a ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }} *.exe
           else
-            tar -cvzf ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }} -C ${{ env.TMP_BUILD_DIR }} *
+            tar -cvzf ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }} -C ${{ env.TMP_BUILD_DIR }} .
           fi
 
       - name: Attach artifacts to ${{ env.bin_tag }} release in GH
