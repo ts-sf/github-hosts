@@ -61,6 +61,7 @@ jobs:
           export os_type="windows-${arch}"
           echo "os_type=${os_type}" >> $GITHUB_ENV
           echo "extention=$(echo ".exe")" >> $GITHUB_ENV
+          echo "archive=$(echo "zip")" >> $GITHUB_ENV
 
       - name: Set os/arch variables
         if: ${{ matrix.os != 'windows-latest' }}
@@ -70,6 +71,7 @@ jobs:
           export system_os=$(echo ${{ matrix.os }} | cut -d- -f1)
           export os_type="${system_os}-${arch}"
           echo "os_type=${system_os}-${arch}" >> $GITHUB_ENV
+          echo "archive=$(echo "tar.gz")" >> $GITHUB_ENV
 
       - name: Check out ${{ env.bin_tag }}
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # pin@v3
@@ -85,15 +87,18 @@ jobs:
         shell: bash
         run: |
           mkdir -p ${{ env.TMP_BUILD_DIR }}
-
           [ -f ./target/release/hosts${{ env.extention }} ] && mv ./target/release/hosts${{ env.extention }} ${{ env.TMP_BUILD_DIR }}/hosts${{ env.extention }}
           [ -f ./target/release/dns-forward${{ env.extention }} ] && mv ./target/release/dns-forward${{ env.extention }} ${{ env.TMP_BUILD_DIR }}/dns-forward${{ env.extention }}
 
-          tar -cvzf ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.tgz -C ${{ env.TMP_BUILD_DIR }} .
+          if [ "${{ matrix.os }}" = "windows-latest" ]; then
+            7z a ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }}
+          else
+            tar -cvzf ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }} -C ${{ env.TMP_BUILD_DIR }} *
+          fi
 
       - name: Attach artifacts to ${{ env.bin_tag }} release in GH
         uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # pin@v1
         with:
           tag_name: ${{ env.bin_tag }}
           files: |
-            ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.tgz
+            ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }}
