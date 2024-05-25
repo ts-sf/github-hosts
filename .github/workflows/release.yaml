@@ -64,8 +64,6 @@ jobs:
           
       fail-fast: false
     runs-on: ${{ matrix.os }}
-    env:
-      BUILD_TARGET: ${{ matrix.target }}
 
     steps:
       - name: Install Rust
@@ -79,26 +77,6 @@ jobs:
           export bin_tag=$(echo ${{ env.TAG_NAME }} | sed s/'refs\/tags\/'//)
           [[ "${bin_tag}" == "main" ]] && echo "tag cannot be equals to 'main'" && exit 1
           echo "bin_tag=${bin_tag}" >> $GITHUB_ENV
-
-      - name: Set os/arch variables (Windows)
-        if: ${{ matrix.os == 'windows-latest' }}
-        shell: bash
-        run: |
-          export "arch=$(echo ${BUILD_TARGET})"
-          export os_type="windows-${arch}"
-          echo "os_type=${os_type}" >> $GITHUB_ENV
-          echo "extention=$(echo ".exe")" >> $GITHUB_ENV
-          echo "archive=$(echo "zip")" >> $GITHUB_ENV
-
-      - name: Set os/arch variables
-        if: ${{ matrix.os != 'windows-latest' }}
-        shell: bash
-        run: |
-          export arch=$(uname -m)
-          export system_os=$(echo ${{ matrix.os }} | cut -d- -f1)
-          export os_type="${system_os}-${arch}"
-          echo "os_type=${system_os}-${arch}" >> $GITHUB_ENV
-          echo "archive=$(echo "tar.gz")" >> $GITHUB_ENV
 
       - name: Check out ${{ env.bin_tag }}
         uses: actions/checkout@v4
@@ -118,9 +96,9 @@ jobs:
           [ -f ./target/release/dns-forward${{ env.extention }} ] && mv ./target/release/dns-forward${{ env.extention }} ${{ env.TMP_BUILD_DIR }}/dns-forward${{ env.extention }}
 
           if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            7z a ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }} ${{ env.TMP_BUILD_DIR }}/*.exe
+            7z a ./tmp/${{ env.bin_tag }}-${{ matrix.target }}.zip ${{ env.TMP_BUILD_DIR }}/*.exe
           else
-            tar -cvzf ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }} -C ${{ env.TMP_BUILD_DIR }} .
+            tar -cvzf ./tmp/${{ env.bin_tag }}-${{ matrix.target }}.tar.gz -C ${{ env.TMP_BUILD_DIR }} .
           fi
 
       - name: Attach artifacts to ${{ env.bin_tag }} release in GH
