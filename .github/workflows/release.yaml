@@ -82,6 +82,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ env.bin_tag }}
+      
+      - name: Set os/arch variables (Windows)
+        if: ${{ matrix.os == 'windows-latest' }}
+        shell: bash
+        run: |
+          echo "archive=$(echo "zip")" >> $GITHUB_ENV
+
+      - name: Set os/arch variables
+        if: ${{ matrix.os != 'windows-latest' }}
+        shell: bash
+        run: |
+          echo "archive=$(echo "tar.gz")" >> $GITHUB_ENV
 
       - name: Cargo build for ${{ matrix.os }} platform
         shell: bash
@@ -96,9 +108,9 @@ jobs:
           [ -f ./target/release/dns-forward${{ env.extention }} ] && mv ./target/release/dns-forward${{ env.extention }} ${{ env.TMP_BUILD_DIR }}/dns-forward${{ env.extention }}
 
           if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            7z a ./tmp/${{ env.bin_tag }}-${{ matrix.target }}.zip ${{ env.TMP_BUILD_DIR }}/*.exe
+            7z a ./tmp/${{ env.bin_tag }}-${{ matrix.target }}.${{ env.archive }} ${{ env.TMP_BUILD_DIR }}/*.exe
           else
-            tar -cvzf ./tmp/${{ env.bin_tag }}-${{ matrix.target }}.tar.gz -C ${{ env.TMP_BUILD_DIR }} .
+            tar -cvzf ./tmp/${{ env.bin_tag }}-${{ matrix.target }}.${{ env.archive }} -C ${{ env.TMP_BUILD_DIR }} .
           fi
 
       - name: Attach artifacts to ${{ env.bin_tag }} release in GH
@@ -106,4 +118,4 @@ jobs:
         with:
           tag_name: ${{ env.bin_tag }}
           files: |
-            ./tmp/${{ env.bin_tag }}-${{ env.os_type }}.${{ env.archive }}
+            ./tmp/${{ env.bin_tag }}-${{ matrix.target }}.${{ env.archive }}
