@@ -17,7 +17,7 @@ pub async fn ipaddress_com_records(domain: &str, timeout: Duration) -> anyhow::R
         .await?
         .text()
         .await?;
-    let index = body.find(HTML_LOCAL_STR).ok_or(anyhow::anyhow!("body."))?;
+    let index = body.find(HTML_LOCAL_STR).ok_or(anyhow::anyhow!("body: {body}"))?;
 
     let reg = format!("<em>({})</em>", IP_ADDR_REGEX);
     let re = Regex::new(&reg).unwrap();
