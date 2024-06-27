@@ -3,7 +3,7 @@ use std::{collections::HashSet, time::Duration};
 use super::{IPV6_ADDR_REGEX, IP_ADDR_REGEX};
 use regex::Regex;
 
-const DNS_HOST: &str = "https://sites.ipaddress.com";
+const DNS_HOST: &str = "https://www.ipaddress.com/site";
 const HTML_LOCAL_STR: &str = r#"@type":"Answer","text":"The hostname resolves to"#;
 
 pub async fn ipaddress_com_records(domain: &str, timeout: Duration) -> anyhow::Result<Vec<String>> {
