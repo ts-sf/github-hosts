@@ -26,17 +26,18 @@ impl Executor {
                 let mut retries = 0;
                 let dm = dm.borrow();
                 loop {
-                    let r = ipaddress_com_records(dm, Duration::from_secs(5)).await;
+                    let r = ipaddress_com_records(dm, Duration::from_secs(15)).await;
                     match r {
                         Ok(ips) => {
                             tracing::debug!("Resolved {dm}.");
-                            break (dm.to_owned(), ips);
+                            break Ok((dm.to_owned(), ips));
                         }
                         Err(e) => {
                             retries += 1;
                             tracing::warn!("[{dm}] error {}", e.to_string());
                             if retries > 3 {
-                                tracing::error!("Many attempts to resolve {dm} it failed.")
+                                tracing::error!("Many attempts to resolve {dm} it failed: {e:?}");
+                                return Err(());
                             }
                             tokio::time::sleep(Duration::from_millis(500)).await;
                         }
@@ -45,7 +46,7 @@ impl Executor {
             })
             .collect::<FuturesUnordered<_>>();
 
-        while let Some((domain, ips)) = futs.next().await {
+        while let Some(Ok((domain, ips))) = futs.next().await {
             tracing::info!("{domain}: {ips:?}");
             for ip in ips.iter() {
                 self._time_delays.insert(ip.to_string(), u32::MAX);
