@@ -7,7 +7,8 @@ use std::{
 use futures::{stream::FuturesUnordered, StreamExt};
 use tokio::net::TcpSocket;
 
-use crate::dns::ipaddress_com::ipaddress_com_records;
+// use crate::dns::ipaddress_com::ipaddress_com_records;
+use crate::dns::resolver;
 
 #[derive(Debug, Default, Clone)]
 pub struct Executor {
@@ -26,7 +27,7 @@ impl Executor {
                 let mut retries = 0;
                 let dm = dm.borrow();
                 loop {
-                    let r = ipaddress_com_records(dm, Duration::from_secs(15)).await;
+                    let r = resolver::resolve_domain(dm).await;
                     match r {
                         Ok(ips) => {
                             tracing::debug!("Resolved {dm}.");

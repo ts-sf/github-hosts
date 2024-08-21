@@ -1,5 +1,4 @@
 use std::{net::SocketAddr, sync::Arc};
-
 use tokio::{net::UdpSocket, sync::mpsc, task::JoinSet};
 
 pub async fn server(server_at: &str, remote_dns_addr: &str) -> anyhow::Result<()> {
@@ -110,6 +109,6 @@ mod tests {
     #[ignore = "server thread."]
     async fn test_server() {
         config_logger("info");
-        server("127.0.0.1", "8.8.8.8:53").await.unwrap();
+        server("127.0.0.1:53", "8.8.8.8:53").await.unwrap();
     }
 }
