@@ -1,8 +1,8 @@
 
 # start
 
-140.82.114.6		api.github.com
-140.82.114.22		api.githubcopilot.com
+140.82.112.5		api.github.com
+140.82.114.21		api.githubcopilot.com
 185.199.108.153		assets-cdn.github.com
 185.199.111.133		avatars.githubusercontent.com
 185.199.111.133		avatars0.githubusercontent.com
@@ -12,23 +12,23 @@
 185.199.111.133		avatars4.githubusercontent.com
 185.199.111.133		avatars5.githubusercontent.com
 185.199.111.133		camo.githubusercontent.com
-140.82.112.22		central.github.com
+140.82.113.21		central.github.com
 140.82.112.9		codeload.github.com
-4.249.131.160		copilot-proxy.githubusercontent.com
+138.91.182.224		copilot-proxy.githubusercontent.com
 185.199.111.133		desktop.githubusercontent.com
 185.199.111.133		favicons.githubusercontent.com
-140.82.113.33		ghcr.io
-140.82.114.4		gist.github.com
-3.5.22.145		github-cloud.s3.amazonaws.com
-3.5.27.207		github-com.s3.amazonaws.com
-52.217.115.185		github-production-release-asset-2e65be.s3.amazonaws.com
-3.5.2.87		github-production-repository-file-5c1aeb.s3.amazonaws.com
-52.217.196.153		github-production-user-asset-6210df.s3.amazonaws.com
+140.82.114.33		ghcr.io
+140.82.112.3		gist.github.com
+3.5.22.165		github-cloud.s3.amazonaws.com
+3.5.27.23		github-com.s3.amazonaws.com
+16.15.176.0		github-production-release-asset-2e65be.s3.amazonaws.com
+16.15.185.152		github-production-repository-file-5c1aeb.s3.amazonaws.com
+3.5.25.20		github-production-user-asset-6210df.s3.amazonaws.com
 192.0.66.2		github.blog
-140.82.113.3		github.com
-140.82.112.17		github.community
-185.199.110.154		github.githubassets.com
-151.101.1.194		github.global.ssl.fastly.net
+140.82.112.4		github.com
+140.82.114.17		github.community
+185.199.109.154		github.githubassets.com
+151.101.129.194		github.global.ssl.fastly.net
 185.199.108.153		github.io
 185.199.111.133		github.map.fastly.net
 185.199.108.153		githubstatus.com
@@ -41,6 +41,6 @@
 
 # github repository: https://github.com/ts-sf/github-hosts
 
-# update at 2024-11-01 10:04:41
+# update at 2024-11-01 16:35:02
 
 # end 
