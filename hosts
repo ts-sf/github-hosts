@@ -1,8 +1,8 @@
 
 # start
 
-140.82.112.5		api.github.com
-140.82.113.22		api.githubcopilot.com
+140.82.113.6		api.github.com
+140.82.114.22		api.githubcopilot.com
 185.199.111.133		avatars.githubusercontent.com
 185.199.111.133		avatars0.githubusercontent.com
 185.199.111.133		avatars1.githubusercontent.com
@@ -11,23 +11,23 @@
 185.199.111.133		avatars4.githubusercontent.com
 185.199.111.133		avatars5.githubusercontent.com
 185.199.111.133		camo.githubusercontent.com
-140.82.112.22		central.github.com
+140.82.113.22		central.github.com
 140.82.114.9		codeload.github.com
 20.85.130.105		copilot-proxy.githubusercontent.com
 185.199.111.133		desktop.githubusercontent.com
 185.199.111.133		favicons.githubusercontent.com
-140.82.114.33		ghcr.io
-140.82.112.3		gist.github.com
-54.231.128.105		github-cloud.s3.amazonaws.com
-52.216.214.81		github-com.s3.amazonaws.com
-16.182.42.177		github-production-release-asset-2e65be.s3.amazonaws.com
-16.182.71.137		github-production-repository-file-5c1aeb.s3.amazonaws.com
-52.216.212.49		github-production-user-asset-6210df.s3.amazonaws.com
+140.82.112.34		ghcr.io
+140.82.113.4		gist.github.com
+52.216.217.17		github-cloud.s3.amazonaws.com
+16.15.228.155		github-com.s3.amazonaws.com
+3.5.8.160		github-production-release-asset-2e65be.s3.amazonaws.com
+16.15.199.85		github-production-repository-file-5c1aeb.s3.amazonaws.com
+54.231.236.9		github-production-user-asset-6210df.s3.amazonaws.com
 192.0.66.2		github.blog
-140.82.114.4		github.com
+140.82.112.3		github.com
 140.82.112.18		github.community
-185.199.109.215		github.githubassets.com
-151.101.193.194		github.global.ssl.fastly.net
+185.199.111.215		github.githubassets.com
+151.101.65.194		github.global.ssl.fastly.net
 185.199.110.153		github.io
 185.199.111.133		github.map.fastly.net
 185.199.110.153		githubstatus.com
@@ -40,6 +40,6 @@
 
 # github repository: https://github.com/ts-sf/github-hosts
 
-# update at 2026-05-04 12:12:15
+# update at 2026-05-04 18:26:51
 
 # end 
