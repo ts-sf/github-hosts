@@ -1,8 +1,8 @@
 
 # start
 
-20.29.134.17		api.github.com
-140.82.114.22		api.githubcopilot.com
+172.182.252.137		api.github.com
+140.82.112.22		api.githubcopilot.com
 185.199.110.133		avatars.githubusercontent.com
 185.199.110.133		avatars0.githubusercontent.com
 185.199.110.133		avatars1.githubusercontent.com
@@ -11,23 +11,23 @@
 185.199.110.133		avatars4.githubusercontent.com
 185.199.110.133		avatars5.githubusercontent.com
 185.199.110.133		camo.githubusercontent.com
-140.82.114.21		central.github.com
-20.29.134.24		codeload.github.com
+140.82.112.22		central.github.com
+172.182.252.132		codeload.github.com
 138.91.182.224		copilot-proxy.githubusercontent.com
 185.199.110.133		desktop.githubusercontent.com
 185.199.110.133		favicons.githubusercontent.com
-20.29.134.18		ghcr.io
-20.29.134.23		gist.github.com
-54.231.232.82		github-cloud.s3.amazonaws.com
-52.216.10.38		github-com.s3.amazonaws.com
-52.217.86.48		github-production-release-asset-2e65be.s3.amazonaws.com
-52.217.89.96		github-production-repository-file-5c1aeb.s3.amazonaws.com
-52.217.89.96		github-production-user-asset-6210df.s3.amazonaws.com
+172.182.252.136		ghcr.io
+172.182.252.133		gist.github.com
+16.15.229.97		github-cloud.s3.amazonaws.com
+54.231.166.106		github-com.s3.amazonaws.com
+52.217.125.234		github-production-release-asset-2e65be.s3.amazonaws.com
+16.15.183.147		github-production-repository-file-5c1aeb.s3.amazonaws.com
+16.15.245.183		github-production-user-asset-6210df.s3.amazonaws.com
 192.0.66.2		github.blog
-20.29.134.23		github.com
-140.82.114.17		github.community
-185.199.111.215		github.githubassets.com
-151.101.65.194		github.global.ssl.fastly.net
+172.182.252.133		github.com
+140.82.113.18		github.community
+185.199.108.215		github.githubassets.com
+151.101.1.194		github.global.ssl.fastly.net
 185.199.108.153		github.io
 185.199.110.133		github.map.fastly.net
 185.199.108.153		githubstatus.com
@@ -40,6 +40,6 @@
 
 # github repository: https://github.com/ts-sf/github-hosts
 
-# update at 2026-10-17 03:34:47
+# update at 2026-10-17 12:34:34
 
 # end 
